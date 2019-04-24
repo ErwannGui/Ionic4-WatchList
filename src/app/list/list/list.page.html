@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Films</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-searchbar
+    placeholder="Search for movies"
+    (ionInput)="getFilms($event)">
+  </ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides style="background-color: black">
+    <ion-slide *ngFor="let film of films" (click)="itemTapped($event, film.imdbID)">
+      <img src="{{film.Poster}}"/>
+      <div>
+        <h1 text-center style="color: white">{{film.Title}}</h1>
+        <span text-center style="color: white">{{film.Year}}</span>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

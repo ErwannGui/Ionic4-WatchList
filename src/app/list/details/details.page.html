@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="selectedItem">Details film</ion-title>
+    <ion-buttons slot="start"  *ngIf="!selectedItem">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingText="Pull to refresh..."
+            refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <h3 text-center *ngIf="selectedItem">
+    {{selectedItem.Title}}
+  </h3><br>
+  <p padding-left padding-right><b>Year : </b>{{selectedItem.Year}}</p>
+  <p padding-left padding-right><b>Genre : </b>{{selectedItem.Genre}}</p>
+  <p padding-left padding-right><b>Actors : </b>{{selectedItem.Actors}}</p>
+  <b padding-left>Synopsis : </b>
+  <p text-center padding-left padding-right padding-bottom style="max-height: 200px; overflow: hidden; text-overflow: ellipsis">{{selectedItem.Plot}}</p>
+  <!-- <span style="width: 100%;">
+    <ion-icon style="margin-left: calc(40vw);" name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star-half"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+  </span> -->
+  <p text-center><strong text-center>{{selectedItem.imdbRating}}/10</strong></p>
+
+  <ion-card>
+    <ion-card-header>
+      Comments :
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <span text-center color="danger" *ngIf="error">{{error}}</span> -->
+      <ion-list>
+
+        <button ion-item *ngFor="let comment of comments">
+          <ion-icon *ngIf="logged" name="trash" item-right (click)="doConfirm(comment)"></ion-icon>
+          {{comment.content}}
+        </button>
+        <form #form="ngForm">
+          <ion-item>
+            <ion-label floating>Leave a comment ...</ion-label>
+            <ion-input [(ngModel)]="commentForm.commentContent" ngControl="commentContent" name="commentContent" type="text" value=""></ion-input>
+            <button item-right clear ion-button (click)="createComment()">
+              <ion-icon name="send" style="width: 100%; font-size: 4rem!important;"></ion-icon>
+            </button>
+          </ion-item>
+        </form>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+

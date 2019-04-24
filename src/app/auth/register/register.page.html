@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="onFormValidate(form)">
+
+    <ion-item>
+      <ion-label floating>Firstname</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.firstname" name="firstname"
+                 type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Lastname</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.lastname" name="lastname"
+                 type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.email" name="email"
+                 type="email"></ion-input>
+    </ion-item>
+
+    <!--<div *ngIf="!credentialsForm.controls.email.valid &&
+        credentialsForm.controls.email.dirty"
+         class="validator-error">
+      Please enter a valid email.
+    </div>-->
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.password" name="password"
+                 type="password" value=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Confirm</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.confirmPassword" name="confirmPassword"
+                 type="password" value=""></ion-input>
+    </ion-item>
+
+    <br><br>
+
+   <!-- <div *ngIf="credentialsForm.controls.password.hasError('pattern')" text-center>
+      Passwords should be at least 8 characters long and contain one number,
+      one character and one special character.
+    </div>-->
+
+    <div *ngIf="error" text-center>
+      Passwords and confirm don't match !
+    </div>
+
+    <br><br>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button ion-button block color="light" type="submit"
+                [disabled]="form.invalid">
+          Subscribe
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>
+

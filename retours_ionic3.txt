@@ -1,0 +1,22 @@
+1 => 0.5 search bar
+2 => 0 infinity scroll
+2 => 1 suprimer favoris soucis
+1 => 0 changer l'icone
+2 => 1 qualité code
+1 => 0,5 github
+2 => 2 feature
+2 => regle js
+
+
+enlever materialize !!
+Tchat page ou composant ?
+Subscribe au mauvais endroit
+Plus de commentaire (get_favorite WARNING) pareil pour item_detail return
+Create comment
+List html enlever acolade {src}=""
+list debounce ="250" ms (default)
+Login register (Verifier les caractères, limitation ...)
+Qr-code a revoir !
+Promise =/ subscribe
+Logger
+

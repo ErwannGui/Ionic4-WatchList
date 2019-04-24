@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="onLogin(form)">
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.email" name="email"
+                 type="email"></ion-input>
+    </ion-item>
+
+ <!--   <div *ngIf="!credentialsForm.controls.email.valid &&
+        credentialsForm.controls.email.dirty"
+         class="validator-error">
+      Please enter a valid email.
+    </div>-->
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input [(ngModel)]="credentialsForm.password" name="password"
+                 type="password"></ion-input>
+    </ion-item>
+
+   <!-- <div *ngIf="credentialsForm.controls.password.hasError('pattern')">
+      Passwords should be at least 8 characters long and contain one number,
+      one character and one special character.
+    </div>-->
+
+    <br><br>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button ion-button block color="secondary" type="submit" [disabled]="form.invalid">
+          Login
+        </ion-button>
+      </ion-col>
+      <ion-col text-center>
+        <ion-button ion-button block color="light"
+                href="/register">
+          Subscribe
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button ion-button clear color="light" (click)="onForgotPassword()">
+          Forgot your password?
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

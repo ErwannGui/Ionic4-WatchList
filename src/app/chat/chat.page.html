@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row *ngFor="let message of messages">
+
+      <ion-col col-9 *ngIf="message.from !== nickname && message.type === 'public'" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
+        <span class="user_name">{{ message.from }}:</span><br>
+        <span>{{ message.text }}</span>
+        <div class="time">{{message.created | date:'dd/MM hh:MM'}}</div>
+      </ion-col>
+
+      <ion-col col-9 *ngIf="message.from !== nickname && message.type === 'private'" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}" style="color: #FF8C00!important;">
+        <span class="user_name">{{ message.from }} to {{ message.target }}:</span><br>
+        <span>{{ message.text }}</span>
+        <div class="time">{{message.created | date:'dd/MM hh:MM'}}</div>
+      </ion-col>
+
+      <ion-col offset-3 col-9 *ngIf="message.from === nickname && message.type === 'public'" class="message" [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
+        <span class="user_name">{{ message.from }}:</span><br>
+        <span>{{ message.text }}</span>
+        <div class="time">{{message.created | date:'dd/MM hh:MM'}}</div>
+      </ion-col>
+
+      <ion-col offset-3 col-9 *ngIf="message.from === nickname && message.type === 'private'" class="message" [ngClass]="{'my_private_message': message.from === nickname, 'other_message': message.from !== nickname}">
+        <span class="user_name">{{ message.from }} to {{ message.target }}:</span><br>
+        <span>{{ message.text }}</span>
+        <div class="time">{{message.created | date:'dd/MM hh:MM'}}</div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <form #form="ngForm" (ngSubmit)="sendMessage(form)">
+      <ion-row class="message_row">
+        <ion-col col-3>
+          <ion-item no-lines>
+            <ion-input type="text" placeholder="Target" name="target" [(ngModel)]="target"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-6>
+          <ion-item no-lines>
+            <ion-input type="text" placeholder="Message" name="message" [(ngModel)]="message"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button clear color="primary" type="submit" [disabled]="message === ''">
+            Send
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-toolbar>
+</ion-footer>

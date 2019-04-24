@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mes favoris</ion-title>
+      <ion-buttons slot="start">
+        <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-button ion-item  *ngFor="let film of films" (click)="itemTapped($event, film.imdbID)">
+      <ion-icon name="star" item-right></ion-icon>
+      {{film.Title}}
+    </ion-button>
+  </ion-list>
+</ion-content>
