@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import {ToastController} from '@ionic/angular';
 import {Observable} from 'rxjs';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-chat',
